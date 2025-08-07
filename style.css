@@ -218,6 +218,8 @@ main {
 
 #cardDescription {
     max-width: 278px
+   text-align: justify;
+
     margin-top: 2px; /* margine molto piccolo */
 }
 
@@ -360,3 +362,4 @@ main {
     align-items: center;
 
 }
+
