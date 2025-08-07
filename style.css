@@ -217,6 +217,7 @@ main {
 }
 
 #cardDescription {
+    max-width: 278px
     margin-top: 2px; /* margine molto piccolo */
 }
 
@@ -357,4 +358,5 @@ main {
     display: flex;
     justify-content: center;
     align-items: center;
+
 }
