@@ -1,9 +1,9 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="it">
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Creazione Carta Modello 2 </title>
+    <title>Creazione Carta Personalizzata</title>
     <link rel="stylesheet" href="style.css" />
 </head>
 <body>
@@ -86,6 +86,17 @@
                 <!-- Qui puoi aggiungere solo quelle che servono o lasciar vuoto -->
             </div>
 
+            <h3>Rarità</h3>
+            <label for="raritychoose">Testo Rarita:</label>
+            <select id="raritychoose">
+                <option value="C" selected>C</option>
+                <option value="NC">NC</option>
+                <option value="R">R</option>
+                <option value="SR">SR</option>
+                <option value="UR">UR</option>
+           
+            </select>
+
             <label for="rarityTextColor">Colore testo rarità:</label>
             <input type="color" id="rarityTextColor" value="#000000" />
             <div id="rarityTextColorSwatches" class="swatch-container"></div>
@@ -98,7 +109,7 @@
             <label for="cardNumberInput">Testo numero carta:</label>
             <input type="text" id="cardNumberInput" placeholder="es. 1/150" />
 
-            <label for="numberFontFamily">Font numero carta:</label>
+            <label for="numberFontFamily">Font numero carta e rarità:</label>
             <select id="numberFontFamily">
                 <option value="Arial" selected>Arial</option>
                 <option value="Verdana">Verdana</option>
@@ -158,7 +169,7 @@
             <label for="RettRightColor">Colore Rettangolo Destro:</label>
             <input type="color" id="RettRightColor" value="#ffffff" />
             <div id="RettRightColorSwatches" class="swatch-container"></div>
-           
+
             <button id="downloadBtn">Scarica Carta</button>
         </aside>
 
@@ -169,7 +180,7 @@
                     <img id="cardImage" src="" alt="Immagine carta" />
                 </div>
 
-                <div class="card-header">
+                <div class="card-header" id="ContTitle">
                     <h2 id="cardTitle">Titolo</h2>
                     <!-- Tolto il simbolo in alto -->
                 </div>
@@ -203,4 +214,3 @@
     <script src="script2.js"></script>
 </body>
 </html>
-
