@@ -1,4 +1,4 @@
-﻿// Elementi principali
+// Elementi principali
 const titleInput = document.getElementById("titleInput");
 const descInput = document.getElementById("descInput");
 const imageInput = document.getElementById("imageInput");
@@ -78,18 +78,7 @@ cardNumberInput.addEventListener("input", () => {
 });
 
 // Rarità: aggiorna testo e colori
-const raritySelect = document.createElement("select");
-["", "C", "NC", "R", "SR", "UR"].forEach(rarity => {
-    const opt = document.createElement("option");
-    opt.value = rarity;
-    opt.textContent = rarity;
-    raritySelect.appendChild(opt);
-});
-raritySelect.addEventListener("change", () => {
-    rarityBox.textContent = raritySelect.value;
-    updateRarityColors();
-});
-document.getElementById("footerControls").appendChild(raritySelect);
+
 
 // Funzioni colori rarità
 function updateRarityColors() {
@@ -466,10 +455,10 @@ titleFontColorInput.addEventListener("input", updateTitleColors);
 titleBgColorInput.addEventListener("input", updateTitleColors);
 descFontColorInput.addEventListener("input", updateDescriptionColors);
 descBgColorInput.addEventListener("input", updateDescriptionColors);
-
+const ContTitle = document.getElementById("ContTitle");
 function updateTitleColors() {
     cardTitle.style.color = titleFontColorInput.value;
-    cardTitle.style.backgroundColor = titleBgColorInput.value;
+    ContTitle.style.backgroundColor = titleBgColorInput.value;
 }
 
 function updateDescriptionColors() {
@@ -549,4 +538,12 @@ RettLeftColor.addEventListener("input", () => {
 
 RettRightColor.addEventListener("input", () => {
     bottomRight.style.backgroundColor = RettRightColor.value;
+});
+
+
+const raritychoose = document.getElementById("raritychoose");   
+const Rarita = document.getElementById("Rarita");   
+raritychoose.addEventListener("change", () => {
+    Rarita.textContent = raritychoose.value;
+    updateRarityColors();
 });
