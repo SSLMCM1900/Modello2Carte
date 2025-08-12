@@ -21,9 +21,7 @@ const titleFontColorInput = document.getElementById("titleFontColor");
 const titleBgColorInput = document.getElementById("titleBgColor");
 const descFontColorInput = document.getElementById("descFontColor");
 const descBgColorInput = document.getElementById("descBgColor");
-const colore1 = "black";
-const colore2 = "black";
-const colore3 = "black";
+
 
 // Word colors per palette (se usi swatch)
 const wordColors = [
@@ -152,10 +150,39 @@ window.addEventListener("DOMContentLoaded", () => {
 
     metadestra.style.backgroundColor = "red";
     createColorSwatches("shapeColorSwatches", "shapeColor", (color) => {
-        document.querySelectorAll(".shape").forEach(el => el.style.backgroundColor = color);
+       
+        const Rarita2 = document.getElementById("Rarita");   
+        const NumeroCarta2 = document.getElementById("NumeroCarta");
+        Rarita2.style.backgroundColor = color;
+        NumeroCarta2.style.backgroundColor = color;
+        const Casella1 = document.getElementById(`Casella1`);
+        if (Casella1) {
+            Casella1.style.backgroundColor = color;
+        }
+        for (let i = 2; i <= 3; i++) {
+            const shapenuovo = document.getElementById(`shape${i}`);
+            if (shapenuovo) {
+                shapenuovo.setAttribute('fill', color);
+            }
+        }
+
     });
     createColorSwatches("symbolColorSwatches", "symbolColor", (color) => {
-        document.querySelectorAll(".symbol").forEach(el => el.style.color = color);
+        
+        const Rarita2 = document.getElementById("Rarita");
+        const NumeroCarta2 = document.getElementById("NumeroCarta");
+        Rarita2.style.color = color;
+        NumeroCarta2.style.color = color;
+        const Casella1 = document.getElementById(`Casella1`);
+        if (Casella1) {
+            Casella1.style.color = color;
+        }
+        for (let i = 2; i <= 3; i++) {
+            const shapenuovo = document.getElementById(`symbol${i}`);
+            if (shapenuovo) {
+                shapenuovo.setAttribute('fill', color);
+            }
+        }
     });
     createColorSwatches("rarityTextColorSwatches", "rarityTextColor", (color) => {
         rarityBox.style.color = color;
@@ -263,8 +290,37 @@ for (let i = 1; i <= 3; i++) {
         shapeColorInput.classList.add("shape-color");
 
         symbolSelect.addEventListener("change", updateFooterSymbol);
-        symbolColorInput.addEventListener("input", updateFooterSymbol);
-        shapeColorInput.addEventListener("input", updateFooterSymbol);
+        symbolColorInput.addEventListener("input", (color) => {
+            shapeColorInput.value = color;
+            Rarita.style.color = color;
+            NumeroCarta.style.color = color;
+            const Casella1 = document.getElementById(`Casella1`);
+            if (Casella1) {
+                Casella1.style.color = color;
+            }
+            for (let i = 2; i <= 3; i++) {
+                const shapenuovo = document.getElementById(`symbol${i}`);
+                if (shapenuovo) {
+                    shapenuovo.setAttribute('fill', color);
+                }
+            }
+        }
+        );
+        shapeColorInput.addEventListener("input", (color) => {
+            shapeColorInput.value = color;
+            Rarita.style.backgroundColor = color;
+            NumeroCarta.style.backgroundColor = color;
+            const Casella1 = document.getElementById(`Casella1`);
+            if (Casella1) {
+                Casella1.style.backgroundColor = color;
+            }
+            for (let i = 2; i <= 3; i++) {
+                const shapenuovo = document.getElementById(`shape${i}`);
+                if (shapenuovo) {
+                    shapenuovo.setAttribute('fill', color);
+                }
+            }
+        });
 
 
         wrapper.appendChild(symbolLabel);
@@ -468,10 +524,10 @@ function updateFooterSymbol(e) {
         let shapeElement = "";
 
         if (shape === "circle") {
-            shapeElement = `<circle cx="50" cy="50" r="45" fill="${coloriforme[index]}" />`;
+            shapeElement = `<circle cx="50" cy="50" r="45" id=shape${index} fill="${coloriforme[index]}" />`;
         } else {
             const points = shapePolygons[shape] || shapePolygons.square;
-            shapeElement = `<polygon points="${points}" fill="${coloriforme[index]}" />`;
+            shapeElement = `<polygon points="${points}" id=shape${index} fill="${coloriforme[index]}" />`;
         }
 
         // Costruzione SVG
@@ -479,7 +535,7 @@ function updateFooterSymbol(e) {
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100%" height="100%">
   ${shapeElement}
   <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle"
-        fill="${colorisimboli[index]}" font-size="40" font-family="Noto Sans Symbols, Arial">
+        fill="${colorisimboli[index]}"  id=symbol${index} font-size="40"  font-family="Noto Sans Symbols, Arial">
     ${symbol}
   </text>
 </svg>
