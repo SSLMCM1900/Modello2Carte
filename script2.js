@@ -290,36 +290,22 @@ for (let i = 1; i <= 3; i++) {
         shapeColorInput.classList.add("shape-color");
 
         symbolSelect.addEventListener("change", updateFooterSymbol);
-        symbolColorInput.addEventListener("input", (color) => {
-            shapeColorInput.value = color;
-            Rarita.style.color = color;
-            NumeroCarta.style.color = color;
+        symbolColorInput.addEventListener("input", (event) => {
+           
             const Casella1 = document.getElementById(`Casella1`);
             if (Casella1) {
-                Casella1.style.color = color;
+                Casella1.style.color = event.target.value;
             }
-            for (let i = 2; i <= 3; i++) {
-                const shapenuovo = document.getElementById(`symbol${i}`);
-                if (shapenuovo) {
-                    shapenuovo.setAttribute('fill', color);
-                }
-            }
+          
         }
         );
-        shapeColorInput.addEventListener("input", (color) => {
-            shapeColorInput.value = color;
-            Rarita.style.backgroundColor = color;
-            NumeroCarta.style.backgroundColor = color;
+        shapeColorInput.addEventListener("input", (event) => {
+           
             const Casella1 = document.getElementById(`Casella1`);
             if (Casella1) {
-                Casella1.style.backgroundColor = color;
+                Casella1.style.backgroundColor = event.target.value;
             }
-            for (let i = 2; i <= 3; i++) {
-                const shapenuovo = document.getElementById(`shape${i}`);
-                if (shapenuovo) {
-                    shapenuovo.setAttribute('fill', color);
-                }
-            }
+          
         });
 
 
