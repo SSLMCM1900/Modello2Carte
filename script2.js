@@ -846,3 +846,183 @@ ColoraTutto.addEventListener("input", () => {
     Rarita.style.backgroundColor = ColoraTutto.value;
     cardPreview.style.backgroundColor = ColoraTutto.value;
 });
+
+function setupCardStyle() {
+    const card = document.querySelector('.card');
+    const header = document.querySelector('.card-header');
+    const description = document.getElementById('cardDescription');
+    const bottomRect = document.querySelector('.bottom-rectangle');
+    const image = document.querySelector('.card img');
+
+    // Assicura che la card sia il contenitore relativo
+    if (card) {
+        card.style.position = 'relative';
+        card.style.overflow = 'hidden';
+    }
+
+    // Mantieni immagine full screen sotto
+    if (image) {
+        image.style.position = 'absolute';
+        image.style.top = '0';
+        image.style.left = '0';
+        image.style.width = '100%';
+        image.style.height = '100%';
+        image.style.objectFit = 'cover';
+        image.style.zIndex = '1';
+        image.style.pointerEvents = 'none';
+        image.style.userSelect = 'none';
+    }
+
+    // Titolo
+    if (header) {
+        header.style.position = 'absolute';
+        header.style.top = '10px';
+        header.style.left = '50%';
+        header.style.transform = 'translateX(-50%)';
+        header.style.backgroundColor = 'transparent';
+        header.style.border = 'none';
+        header.style.zIndex = '4';
+        header.style.cursor = 'move';
+
+        const h2 = header.querySelector('h2');
+        if (h2) {
+            h2.style.margin = '0';
+            h2.style.fontSize = '1.2rem';
+            h2.style.fontWeight = 'bold';
+            h2.style.color = 'black';
+            h2.style.backgroundColor = 'transparent';
+            h2.style.textShadow = '1px 1px 2px rgba(255,255,255,0.6)';
+        }
+    }
+
+    // Descrizione
+    if (description) {
+        description.style.position = 'absolute';
+        description.style.top = '120px';
+        description.style.left = '10px';
+        description.style.width = 'calc(100% - 20px)';
+        description.style.backgroundColor = 'transparent';
+        description.style.border = 'none';
+        description.style.color = 'black';
+        description.style.zIndex = '3';
+        description.style.cursor = 'move';
+        description.style.display = 'block';
+        description.style.whiteSpace = 'pre-wrap';
+        description.style.wordWrap = 'break-word';
+        description.style.fontSize = '10px';
+        description.style.textShadow = '1px 1px 2px rgba(255,255,255,0.6)';
+    }
+
+    // Rettangolo in basso
+    if (bottomRect) {
+        bottomRect.style.position = 'absolute';
+        bottomRect.style.top = '310px';
+        bottomRect.style.left = '10%';
+        bottomRect.style.width = '80%';
+        bottomRect.style.height = '40px';
+        bottomRect.style.borderTop = '2px solid #333';
+        bottomRect.style.display = 'flex';
+        bottomRect.style.zIndex = '4';
+        bottomRect.style.cursor = 'move';
+        bottomRect.style.backgroundColor = 'white';
+    }
+
+    // Funzione drag
+    function makeDraggable(element) {
+        let offsetX = 0, offsetY = 0, isDragging = false;
+
+        element.addEventListener('mousedown', startDrag);
+        element.addEventListener('touchstart', startDrag, { passive: false });
+
+        function startDrag(e) {
+            e.preventDefault();
+            isDragging = true;
+            const evt = e.type.startsWith('touch') ? e.touches[0] : e;
+            const rect = element.getBoundingClientRect();
+            offsetX = evt.clientX - rect.left;
+            offsetY = evt.clientY - rect.top;
+
+            document.addEventListener('mousemove', drag);
+            document.addEventListener('mouseup', stopDrag);
+            document.addEventListener('touchmove', drag, { passive: false });
+            document.addEventListener('touchend', stopDrag);
+        }
+
+        function drag(e) {
+            if (!isDragging) return;
+            const evt = e.type.startsWith('touch') ? e.touches[0] : e;
+            const parentRect = element.parentElement.getBoundingClientRect();
+            element.style.left = (evt.clientX - parentRect.left - offsetX) + 'px';
+            element.style.top = (evt.clientY - parentRect.top - offsetY) + 'px';
+        }
+
+        function stopDrag() {
+            isDragging = false;
+            document.removeEventListener('mousemove', drag);
+            document.removeEventListener('mouseup', stopDrag);
+            document.removeEventListener('touchmove', drag);
+            document.removeEventListener('touchend', stopDrag);
+        }
+    }
+
+    // Attiva drag
+    if (header) makeDraggable(header);
+    if (description) makeDraggable(description);
+    if (bottomRect) makeDraggable(bottomRect);
+    const footer = document.querySelector('.card-footer');
+    if (footer) {
+        footer.style.position = 'absolute';
+        footer.style.bottom = '0';
+        footer.style.left = '0';
+        footer.style.width = '100%';
+        footer.style.backgroundColor = '#eee'; // o white, se preferisci
+        footer.style.zIndex = '5'; // sopra gli altri
+        footer.style.display = 'flex';
+        footer.style.alignItems = 'center';
+        footer.style.padding = '5px 8px';
+        footer.style.borderTop = '1px solid #ccc';
+        footer.style.gap = '6px';
+        footer.style.fontSize = '0.85rem';
+    }
+ 
+    FooterTrasp.style.display = "block"; 
+    CaselleTrasp.style.display = "block";
+}
+
+
+// Attivazione
+const FullArt = document.getElementById("FullArt");
+FullArt.addEventListener("click", () => {
+    setupCardStyle();
+});
+
+const FooterTrasp = document.getElementById("FooterTrasp");
+const cardFooter = document.querySelector(".card-footer");
+FooterTrasp.addEventListener("click", () => {
+    if (cardFooter) {
+        cardFooter.style.backgroundColor = "transparent";
+        cardFooter.style.borderTop = "none";
+        cardFooter.style.zIndex = "5";
+        cardFooter.style.color = "black";
+        cardFooter.style.textShadow = "1px 1px 2px rgba(255,255,255,0.6)";
+    }
+});
+const CaselleTrasp = document.getElementById("CaselleTrasp");
+CaselleTrasp.addEventListener("click", () => {
+    if (cardFooter) {
+        cardFooter.style.backgroundColor = "transparent";
+        cardFooter.style.borderTop = "none";
+        cardFooter.style.zIndex = "5";
+        cardFooter.style.color = "black";
+        cardFooter.style.textShadow = "1px 1px 2px rgba(255,255,255,0.6)";
+    }
+});
+const caselle = document.querySelectorAll(".card-footer .footer-box");
+FooterTrasp.addEventListener("click", () => {
+    caselle.forEach(box => {
+        box.style.backgroundColor = "transparent";
+        box.style.border = "none";
+        box.style.color = "black";
+        box.style.textShadow = "1px 1px 2px rgba(255,255,255,0.6)";
+    });
+});
