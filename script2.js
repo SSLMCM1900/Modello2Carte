@@ -250,7 +250,7 @@ const resizeObserver = new ResizeObserver(() => {
 resizeObserver.observe(imageContainer);
 
 
-const allowedSymbols = ["⇑", "⇓", "⇒", "⇐", "∞", "⚡", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
+const allowedSymbols = ["","⇑", "⇓", "⇒", "⇐", "∞", "⚡", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
 const allowedShapes = ["circle", "star", "diamond"];
 const E = ["E1", "E2", "E3", "E4", "E5", "E6", "E7", "E8", "E9"];
 const colorisimboli = [  "black",  "black"]; 
@@ -833,3 +833,4 @@ bottone.addEventListener("click", () => {
         updateShape();
     });
 });
+
