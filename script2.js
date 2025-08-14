@@ -833,4 +833,16 @@ bottone.addEventListener("click", () => {
         updateShape();
     });
 });
+createColorSwatches("ColoraTuttoSwatches", "ColoraTutto", (color) => {
+    const header = document.querySelector(".card-header");
+    header.style.backgroundColor = color;
+    Rarita.style.backgroundColor = color;
+    cardPreview.style.backgroundColor = color;
 
+});
+const ColoraTutto = document.getElementById("ColoraTutto");
+ColoraTutto.addEventListener("input", () => {
+    header.style.backgroundColor = ColoraTutto.value;
+    Rarita.style.backgroundColor = ColoraTutto.value;
+    cardPreview.style.backgroundColor = ColoraTutto.value;
+});
