@@ -101,22 +101,14 @@ function updateNumeroCartaColors() {
 NCartaTestoInput.addEventListener("input", updateNumeroCartaColors);
 NCartaSfondoInput.addEventListener("input", updateNumeroCartaColors);
 
+// Download immagine
 downloadBtn.addEventListener("click", () => {
     imageContainer.classList.add('export-cleanup');
     html2canvas(cardPreview, { scale: 3.213 }).then(canvas => {
-        const dataURL = canvas.toDataURL("image/png");
-
-        // Fallback per Safari mobile
-        const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
-        if (isSafari) {
-            window.open(dataURL, "_blank");
-        } else {
-            const link = document.createElement("a");
-            link.download = `carta_${cardTitle.textContent}.png`;
-            link.href = dataURL;
-            link.click();
-        }
-
+        const link = document.createElement("a");
+        link.download = `carta_${cardTitle.textContent}.png`;
+        link.href = canvas.toDataURL();
+        link.click();
         imageContainer.classList.remove('export-cleanup');
     });
 });
@@ -1034,3 +1026,4 @@ FooterTrasp.addEventListener("click", () => {
         box.style.textShadow = "1px 1px 2px rgba(255,255,255,0.6)";
     });
 });
+
